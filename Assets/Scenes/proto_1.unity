@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 1130005096}
   - component: {fileID: 1130005095}
   - component: {fileID: 1130005097}
+  - component: {fileID: 1130005098}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -575,9 +576,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130005090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69d74b0e1e4655949b4d5582def34327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 963194227}
+  furniturePrefab: {fileID: 2931900006578130543, guid: 0eceded295353a942a66a30ad49d5c83, type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  placeDistance: 5
+  rotationSpeed: 90
+  playerCapsule: {fileID: 1130005090}
+--- !u!114 &1130005098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130005090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb78e3b100d2df641a11efc47290f13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 963194227}
