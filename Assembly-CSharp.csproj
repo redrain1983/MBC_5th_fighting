@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\objectplacer.cs" />
     <Compile Include="Assets\FPSController.cs" />
+    <Compile Include="Assets\New Folder--\NewBehav0110222.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

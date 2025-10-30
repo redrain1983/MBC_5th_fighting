@@ -367,6 +367,6 @@
 /nowarn:1701
 /nowarn:1702
 /utf8output
-/preferreduilang:en-US
+/preferreduilang:ko
 -warn:0
 /additionalfile:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.Entities.UnityAdditionalFile.txt"

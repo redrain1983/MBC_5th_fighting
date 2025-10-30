@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\MBC_5th_fighting\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0EB84B17-A57B-00A5-88C1-A730CA3D79A4}|Assembly-CSharp.csproj|c:\\mbc_5th_fighting\\assets\\helloworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0EB84B17-A57B-00A5-88C1-A730CA3D79A4}|Assembly-CSharp.csproj|solutionrelative:assets\\helloworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0EB84B17-A57B-00A5-88C1-A730CA3D79A4}|Assembly-CSharp.csproj|c:\\mbc_5th_fighting\\assets\\new folder--\\newbehav0110222.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EB84B17-A57B-00A5-88C1-A730CA3D79A4}|Assembly-CSharp.csproj|solutionrelative:assets\\new folder--\\newbehav0110222.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "HelloWorld.cs",
-              "DocumentMoniker": "C:\\MBC_5th_fighting\\Assets\\HelloWorld.cs",
-              "RelativeDocumentMoniker": "Assets\\HelloWorld.cs",
-              "ToolTip": "C:\\MBC_5th_fighting\\Assets\\HelloWorld.cs",
-              "RelativeToolTip": "Assets\\HelloWorld.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAAbAAAAAAAAAA==",
+              "Title": "NewBehav0110222.cs",
+              "DocumentMoniker": "C:\\MBC_5th_fighting\\Assets\\New Folder--\\NewBehav0110222.cs",
+              "RelativeDocumentMoniker": "Assets\\New Folder--\\NewBehav0110222.cs",
+              "ToolTip": "C:\\MBC_5th_fighting\\Assets\\New Folder--\\NewBehav0110222.cs",
+              "RelativeToolTip": "Assets\\New Folder--\\NewBehav0110222.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T03:34:37.216Z",
+              "WhenOpened": "2025-10-30T04:12:53.206Z",
               "EditorCaption": ""
             }
           ]
