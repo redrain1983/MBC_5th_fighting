@@ -146,6 +146,10 @@ public class objectplacer3 : MonoBehaviour
                 Debug.Log("가구 삭제 완료: " + target.name);
                 ClearHighlight();
 
+                // ✅ 삭제 후 자동 해제 + 메시지 표시
+                isDeleting = false;
+                FindObjectOfType<DeleteNoticeUI>()?.ShowMessage("삭제 완료!");
+
                 // ✅ 삭제 후 삭제 모드 해제
                 isDeleting = false;
                 Debug.Log("삭제 모드 자동 해제");
@@ -180,6 +184,7 @@ public class objectplacer3 : MonoBehaviour
                 }
                 else
                 {
+
                     Color c = m.color;
                     c.a = 1f;
                     m.color = c;
@@ -191,7 +196,7 @@ public class objectplacer3 : MonoBehaviour
         }
     }
 
-    // === 하이라이트 적용 ===
+    // === 하이라이트 적용 ==
     private void ApplyHighlight(GameObject obj)
     {
         Renderer renderer = obj.GetComponent<Renderer>();
@@ -199,8 +204,20 @@ public class objectplacer3 : MonoBehaviour
         if (renderer == null) return;
 
         originalMaterials = renderer.materials;
+
+        // 🟡 설치 미리보기처럼 반투명 셰이더 설정
         Material highlightMat = new Material(Shader.Find("Standard"));
-        highlightMat.color = highlightColor;
+        Color c = highlightColor; // highlightColor 인스펙터에서 설정 가능
+        if (c.a == 1f) c.a = 0.4f; // 투명도 자동 조정 (1이면 0.4로 낮춤)
+        highlightMat.color = c;
+
+        highlightMat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        highlightMat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        highlightMat.SetInt("_ZWrite", 0);
+        highlightMat.DisableKeyword("_ALPHATEST_ON");
+        highlightMat.EnableKeyword("_ALPHABLEND_ON");
+        highlightMat.renderQueue = 3000;
+
         renderer.material = highlightMat;
 
         highlightedObject = obj;
@@ -230,5 +247,10 @@ public class objectplacer3 : MonoBehaviour
         }
         isPlacing = false;
         currentRotation = 0f;
+    }
+    // === 외부에서 가구 프리팹 설정 (FurnitureMenu용) ===
+    public void SetFurniture(GameObject prefab)
+    {
+        furniturePrefab = prefab;
     }
 }
