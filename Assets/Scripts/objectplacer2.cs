@@ -17,12 +17,7 @@ public class ObjectPlacer2 : MonoBehaviour
 
     void Update()
     {
-        if (FindObjectOfType<FurnitureMenu>()?.enabled == true)
-        {
-            var menu = FindObjectOfType<FurnitureMenu>();
-            if (menu != null && menu.gameObject.activeInHierarchy && Time.timeScale == 0)
-                return;
-        }
+        
         // 🔹 E 키로 배치 모드 시작/취소
         if (Input.GetKeyDown(KeyCode.E))
         {
