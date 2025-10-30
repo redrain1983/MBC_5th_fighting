@@ -14,57 +14,87 @@ public class ObjectPlacer : MonoBehaviour
 
     private GameObject previewObject;        // 미리보기 오브젝트
     private float currentRotation = 0f;      // 현재 회전값
+    private bool isPlacing = false;
 
     void Update()
     {
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isPlacing)
+            {
+                // 배치 시작
+                if (furniturePrefab != null)
+                {
+                    previewObject = Instantiate(furniturePrefab);
+                    Collider col = previewObject.GetComponent<Collider>();
+                    if (col != null) col.enabled = false;
+                    SetPreviewTransparent(previewObject, true);
+                    isPlacing = true;
+                }
+                else
+                {
+                    Debug.Log("⚠️ 가구 프리팹이 선택되지 않았습니다!");
+                }
+            }
+            else
+            {
+                // 배치 취소
+                CancelPlacement();
+            }
+        }// E 키로 배치 모드 시작/취소
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isPlacing)
+            {
+                if (furniturePrefab != null)
+                {
+                    previewObject = Instantiate(furniturePrefab);
+                    Collider col = previewObject.GetComponent<Collider>();
+                    if (col != null) col.enabled = false;
+                    SetPreviewTransparent(previewObject, true);
+                    isPlacing = true;
+                }
+            }
+            else
+            {
+                CancelPlacement();
+            }
+        }
 
-        // 바닥만 감지
+        // ESC나 우클릭으로 취소
+        if (isPlacing && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
+        {
+            CancelPlacement();
+            return;
+        }
+
+        // 배치 모드 아닐 땐 return
+        if (!isPlacing) return;
+
+        // 미리보기 및 설치 로직
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        if (!isPlacing) return; // 배치 모드 아닐 때는 아무것도 하지 않음
+
         if (Physics.Raycast(ray, out RaycastHit hit, placeDistance, groundMask, QueryTriggerInteraction.Ignore))
         {
             Vector3 placePos = hit.point;
-
-            // 1️⃣ 프리뷰 오브젝트가 없으면 한 번만 생성
-            if (previewObject == null)
-            {
-                previewObject = Instantiate(furniturePrefab);
-                // 미리보기 충돌 비활성화 (자기 자신에 맞지 않게)
-                Collider col = previewObject.GetComponent<Collider>();
-                if (col != null) col.enabled = false;
-                // 반투명 머티리얼 적용 (선택사항)
-                SetPreviewTransparent(previewObject, true);
-            }
-
-            // 2️⃣ 위치/회전 갱신
             previewObject.transform.position = placePos;
             previewObject.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
 
-            // 3️⃣ 회전 (마우스 휠)
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             if (Mathf.Abs(scroll) > 0.01f)
                 currentRotation += scroll * rotationSpeed * Time.deltaTime * 100f;
 
-            // 4️⃣ 왼쪽 클릭 시 설치
             if (Input.GetMouseButtonDown(0))
             {
                 GameObject placed = Instantiate(furniturePrefab, placePos, Quaternion.Euler(0f, currentRotation, 0f));
-
-                // 플레이어(캡슐)과 충돌하지 않도록 Physics.IgnoreCollision 적용
                 Collider playerCol = playerCapsule.GetComponent<Collider>();
                 Collider furnitureCol = placed.GetComponent<Collider>();
                 if (playerCol != null && furnitureCol != null)
                     Physics.IgnoreCollision(playerCol, furnitureCol);
 
                 SetPreviewTransparent(placed, false);
-            }
-        }
-        else
-        {
-            // 시야에 바닥이 없으면 프리뷰 제거
-            if (previewObject != null)
-            {
-                Destroy(previewObject);
-                previewObject = null;
+                CancelPlacement();
             }
         }
     }
@@ -101,5 +131,15 @@ public class ObjectPlacer : MonoBehaviour
                 }
             }
         }
+    }
+    private void CancelPlacement()
+    {
+        if (previewObject != null)
+        {
+            Destroy(previewObject);
+            previewObject = null;
+        }
+        isPlacing = false;
+        currentRotation = 0f;
     }
 }

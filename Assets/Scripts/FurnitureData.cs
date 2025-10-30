@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FurnitureData : MonoBehaviour
+[CreateAssetMenu(fileName = "NewFurniture", menuName = "Furnitures/Furniture Data")]
+public class FurnitureData : ScriptableObject
 {
     public string furnitureName;      // 가구 이름
     public GameObject prefab;         // 실제 배치될 프리팹

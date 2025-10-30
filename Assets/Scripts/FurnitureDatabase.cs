@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FurnitureDatabase : MonoBehaviour
+[CreateAssetMenu(fileName = "FurnitureDatabase", menuName = "Furnitures/Furniture Database")]
+public class FurnitureDatabase : ScriptableObject
 {
     public List<FurnitureData> allFurniture = new List<FurnitureData>();
     // Start is called before the first frame update
